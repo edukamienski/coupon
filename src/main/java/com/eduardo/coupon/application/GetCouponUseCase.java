@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.eduardo.coupon.application.exception.CouponNotFoundException;
 import com.eduardo.coupon.application.port.CouponRepository;
 import com.eduardo.coupon.domain.Coupon;
+import com.eduardo.coupon.domain.CouponStatus;
 
 public final class GetCouponUseCase {
 
@@ -15,6 +16,10 @@ public final class GetCouponUseCase {
 	}
 
 	public Coupon execute(UUID id) {
-		return couponRepository.findById(id).orElseThrow(() -> new CouponNotFoundException(id.toString()));
+		Coupon coupon = couponRepository.findById(id).orElseThrow(() -> new CouponNotFoundException(id.toString()));
+		if (coupon.status() == CouponStatus.DELETED) {
+			throw new CouponNotFoundException(id.toString());
+		}
+		return coupon;
 	}
 }
