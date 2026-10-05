@@ -6,6 +6,7 @@ import java.time.Instant;
 import com.eduardo.coupon.domain.Coupon;
 import com.eduardo.coupon.domain.CouponStatus;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @JsonPropertyOrder({
 		"id",
@@ -18,13 +19,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 		"redeemed"
 })
 public record CouponResponse(
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED, format = "uuid", example = "cef9d1e3-aae5-4ab6-a297-358c6032b1e7")
 		String id,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED, example = "ABC123")
 		String code,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED)
 		String description,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED, example = "0.8")
 		BigDecimal discountValue,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED, format = "date-time", example = "2030-12-31T23:59:59.000Z")
 		Instant expirationDate,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED)
 		CouponStatus status,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED)
 		boolean published,
+		@Schema(requiredMode = Schema.RequiredMode.REQUIRED)
 		boolean redeemed) {
 
 	public static CouponResponse from(Coupon coupon) {

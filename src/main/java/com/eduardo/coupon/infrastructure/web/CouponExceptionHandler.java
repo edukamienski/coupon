@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
 import com.eduardo.coupon.application.exception.CouponNotFoundException;
 import com.eduardo.coupon.domain.exception.CouponAlreadyDeletedException;
 import com.eduardo.coupon.domain.exception.DomainException;
 
+@Hidden
 @RestControllerAdvice
 public class CouponExceptionHandler {
 
