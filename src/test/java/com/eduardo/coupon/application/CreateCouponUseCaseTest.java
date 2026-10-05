@@ -88,5 +88,10 @@ class CreateCouponUseCaseTest {
 		public Optional<Coupon> findById(UUID id) {
 			return Optional.empty();
 		}
+
+		@Override
+		public Optional<Coupon> findByIDAndStatusActive(UUID id) {
+			return Optional.empty();
+		}
 	}
 }

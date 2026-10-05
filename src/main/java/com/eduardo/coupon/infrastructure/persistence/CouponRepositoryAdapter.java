@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.coupon.application.port.CouponRepository;
 import com.eduardo.coupon.domain.Coupon;
+import com.eduardo.coupon.domain.CouponStatus;
 
 @Repository
 public class CouponRepositoryAdapter implements CouponRepository {
@@ -29,5 +30,11 @@ public class CouponRepositoryAdapter implements CouponRepository {
 	@Transactional(readOnly = true)
 	public Optional<Coupon> findById(UUID id) {
 		return couponJpaRepository.findById(id).map(CouponMapper::toDomain);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Coupon> findByIDAndStatusActive(UUID id) {
+		return couponJpaRepository.findByIdAndStatus(id, CouponStatus.ACTIVE).map(CouponMapper::toDomain);
 	}
 }

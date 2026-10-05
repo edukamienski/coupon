@@ -282,5 +282,10 @@ class CouponControllerTest {
 		public Optional<Coupon> findById(UUID id) {
 			return Optional.ofNullable(coupons.get(id));
 		}
+
+		@Override
+		public Optional<Coupon> findByIDAndStatusActive(UUID id) {
+			return findById(id).filter(coupon -> coupon.status() == CouponStatus.ACTIVE);
+		}
 	}
 }

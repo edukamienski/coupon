@@ -88,5 +88,10 @@ class GetCouponUseCaseTest {
 		public Optional<Coupon> findById(UUID id) {
 			return toReturn;
 		}
+
+		@Override
+		public Optional<Coupon> findByIDAndStatusActive(UUID id) {
+			return toReturn.filter(coupon -> coupon.status() == CouponStatus.ACTIVE);
+		}
 	}
 }
