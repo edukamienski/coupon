@@ -127,7 +127,7 @@ class CouponTest {
 		assertThrows(InvalidDiscountException.class, () -> create(
 				VALID_CODE,
 				VALID_DESCRIPTION,
-				new BigDecimal("-0.1"),
+				new BigDecimal("-0.8"),
 				FUTURE,
 				false));
 	}
@@ -183,7 +183,6 @@ class CouponTest {
 		assertTrue(coupon.published());
 		assertEquals(CouponStatus.ACTIVE, coupon.status());
 		assertFalse(coupon.redeemed());
-		assertNull(coupon.id());
 	}
 
 	@Test
@@ -193,7 +192,6 @@ class CouponTest {
 		assertFalse(coupon.published());
 		assertEquals(CouponStatus.ACTIVE, coupon.status());
 		assertFalse(coupon.redeemed());
-		assertNull(coupon.id());
 	}
 
 	@Test
@@ -215,7 +213,6 @@ class CouponTest {
 		assertEquals(expiration, coupon.expirationDate());
 		assertTrue(coupon.published());
 		assertFalse(coupon.redeemed());
-		assertNull(coupon.id());
 	}
 
 	@Test
@@ -231,7 +228,6 @@ class CouponTest {
 		assertEquals(FUTURE, coupon.expirationDate());
 		assertFalse(coupon.published());
 		assertFalse(coupon.redeemed());
-		assertNull(coupon.id());
 	}
 
 	@Test

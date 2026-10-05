@@ -22,7 +22,6 @@ public final class CreateCouponUseCase {
 			Instant expirationDate,
 			boolean published) {
 		Coupon coupon = Coupon.create(code, description, discountValue, expirationDate, Instant.now(), published);
-		coupon.attachId(UUID.randomUUID());
 		return couponRepository.save(coupon);
 	}
 }

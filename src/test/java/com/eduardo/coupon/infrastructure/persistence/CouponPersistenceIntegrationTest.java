@@ -107,7 +107,6 @@ class CouponPersistenceIntegrationTest {
 				EXPIRATION,
 				REFERENCE,
 				published);
-		coupon.attachId(UUID.randomUUID());
 		return coupon;
 	}
 

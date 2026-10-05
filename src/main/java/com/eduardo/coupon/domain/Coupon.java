@@ -48,11 +48,13 @@ public final class Coupon {
 			Instant expirationDate,
 			Instant referenceInstant,
 			boolean published) {
+
+		UUID id = UUID.randomUUID();
 		CouponCode code = CouponCode.of(rawCode);
 		String description = requireDescription(rawDescription);
 		BigDecimal discount = requireDiscount(discountValue);
 		Instant expiration = requireExpiration(expirationDate, referenceInstant);
-		return new Coupon(null, code, description, discount, expiration, published, false, CouponStatus.ACTIVE);
+		return new Coupon(id, code, description, discount, expiration, published, false, CouponStatus.ACTIVE);
 	}
 
 	public static Coupon reconstitute(
@@ -80,16 +82,6 @@ public final class Coupon {
 			throw new CouponAlreadyDeletedException();
 		}
 		status = CouponStatus.DELETED;
-	}
-
-	public void attachId(UUID id) {
-		if (id == null) {
-			throw new MissingRequiredFieldException("id");
-		}
-		if (this.id != null) {
-			throw new IllegalStateException("O identificador já foi atribuído");
-		}
-		this.id = id;
 	}
 
 	public UUID id() {
